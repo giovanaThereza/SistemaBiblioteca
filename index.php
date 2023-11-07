@@ -61,7 +61,7 @@
                 <p>Descubra nossos livros mais populares</p>
             </div>
 
-            <div class="lista-livro">
+            <div class="lista-livros">
                 <div class="card-livro">
                     <img src="assets/img/livro-css.png" alt="CSS">
                     <h3>CSS Grid layour: Criando layout Profissionais</h3>
