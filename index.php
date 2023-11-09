@@ -62,53 +62,27 @@
             </div>
 
             <div class="lista-livros">
+
+            <?php for($count = 1; $count <= 6; $count++): ?>
                 <div class="card-livro">
+                    <div class="capa">
                     <img src="assets/img/livro-css.png" alt="CSS">
+                    <span class="legenda">Lançamento</span>
+                    </div>
                     <h3>CSS Grid layour: Criando layout Profissionais</h3>
                 </div>
 
                 <div class="card-livro">
-                    <img src="assets/img/livro-html.png" alt="HTML e CSS">
+                    <div class="capa">
+                    <img src="assets/img/livro-html.png" alt="CSS">
+                    <span class="black-friday">Black Friday</span>
+                    </div>
                     <h3>HTML e CSS: Guia Prático</h3>
-                </div>
+                </div>    
+                <?php endfor; ?>
             </div>
 
-            <div class="lista-livro">
-                <div class="card-livro">
-                    <img src="assets/img/livro-css.png" alt="CSS">
-                    <h3>CSS Grid layour: Criando layout Profissionais</h3>
-                </div>
-
-                <div class="card-livro">
-                    <img src="assets/img/livro-html.png" alt="HTML e CSS">
-                    <h3>HTML e CSS: Guia Prático</h3>
-                </div>
-            </div>
-
-            <div class="lista-livro">
-                <div class="card-livro">
-                    <img src="assets/img/livro-css.png" alt="CSS">
-                    <h3>CSS Grid layour: Criando layout Profissionais</h3>
-                </div>
-
-                <div class="card-livro">
-                    <img src="assets/img/livro-html.png" alt="HTML e CSS">
-                    <h3>HTML e CSS: Guia Prático</h3>
-                </div>
-            </div>
-
-            <div class="lista-livro">
-                <div class="card-livro">
-                    <img src="assets/img/livro-css.png" alt="CSS">
-                    <h3>CSS Grid layour: Criando layout Profissionais</h3>
-                </div>
-
-                <div class="card-livro">
-                    <img src="assets/img/livro-html.png" alt="HTML e CSS">
-                    <h3>HTML e CSS: Guia Prático</h3>
-                </div>
-            </div>
-
+            
         </section>
     </main>
 
