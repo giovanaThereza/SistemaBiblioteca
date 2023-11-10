@@ -22,10 +22,22 @@ body {
     padding: 15px;
 }
 
+.barra-topo{
+    position: fixed;
+    width: 100%;
+    z-index: 999999;
+    background-color: #fff;
+}
+
 #cabecalho{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    z-index: 999999;
 }
 #menu ul{
     display: flex;
@@ -61,6 +73,7 @@ body {
     justify-content: center;
     text-align: center;
     color: #fff;
+    padding-top: 70px;
 }
 
 #banner p{
@@ -135,7 +148,7 @@ body {
 
 .card-livro {
     flex-grow: 1;
-    width: calc(25% - 30px);
+    width: calc((100% / 4) - 30px);
     position: relative;
 }
 
@@ -148,6 +161,12 @@ body {
     padding-right: 20px;
     border-radius: 15px;
     font-weight: bold;
+}
+
+.card-livro h3 {
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
 }
 
 .legenda{
@@ -167,10 +186,12 @@ body {
 
 #rodape .container{
     display: flex;
+    flex-wrap: wrap;
 }
 
 .bloco-rodape {
     flex-grow: 1;
+    width: calc(100% / 3);
 }
 
 .bloco-rodape ul {
@@ -191,4 +212,54 @@ body {
     background-color: #ccc;
     text-align: center;
     padding: 20px;
+}
+
+#botao-mobile {
+    display: none;
+
+}
+
+/* Estilo para Mobile */
+
+@media (max-width: 767px) {
+    #botao-mobile {
+    display: block;
+    margin-right: 20px;
+    cursor: pointer;
+    }
+
+    #menu {
+        position: fixed;
+        background-color: #fff;
+        top: 70px;
+        left: -255px;
+        width: 250px;
+        height: 100vh;
+        z-index: 999999;
+        box-shadow: 2px 2px 5px rgb(0, 0, 0, 0.5);
+        transition: left 0.5s;
+    }
+
+    #menu.menu-ativo {
+        left: 0;
+    }
+
+    #menu ul {
+        display: block;
+        margin-top: 20px;
+
+    }
+
+    #menu ul li {
+        padding: 10px;
+    }
+
+    .card-livro {
+        width: calc((100% / 2) - 30px);
+    }
+
+    .bloco-rodape {
+        flex-grow: 1;
+        width: calc(100% / 2);
+    }
 }
