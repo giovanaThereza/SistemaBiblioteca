@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`livros` (
   `autor` VARCHAR(100) NOT NULL,
   `numero_pagina` INT NOT NULL,
   `preco` DECIMAL(10,2) NOT NULL,
-  `ano_public` INT NOT NULL,
+  `ano_publicacao` INT NOT NULL,
   `isbn` VARCHAR(20) NOT NULL,
   `id_categoria` INT NOT NULL,
   PRIMARY KEY (`id_livro`), 

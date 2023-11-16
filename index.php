@@ -25,9 +25,9 @@
         <div id="logotipo"> 
         <h1><img src="assets/img/logotipo.png" alt="BookMeNow" height="30"></h1>
         </div>
-        <nav id="menu" >
+        <nav id="menu">
             <ul>
-                <li><a href="#">Categoria</a></li>
+                <li><a href="/admin/index.php">Categoria</a></li>
                 <li><a href="#">Sobre Nós</a></li>
                 <li><a href="#">Contato</a></li>
                 </ul>

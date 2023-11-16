@@ -1,60 +1,69 @@
-<?php 
+<?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/LivroController.php";
+    
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/cabecalho.php";  
 
-require_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/LivroController.php";
+    if(isset($_GET["del"]) && !empty($_GET['id_livro'])){
 
-require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/cabecalho.php";
+        $livroController->excluirLivro();
 
+    }
+      
 ?>
 
     <main class="container mt-3 mb-3">
-      <h1>Lista de Usúarios
-      <a href="cadastrar.php" class = "btn btn-primary float-end">Cadastrar</a>
-      </h1>
+        <h1>Lista de Livro
+            <a href="cadastrar.php" class="btn btn-primary float-end">Cadastrar</a>
+        </h1>
 
-      <table class = "table table-striped">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Título</th>
-                <th>Autor</th>
-                <th>Números de Páginas</th>
-                <th>Preço</th>
-                <th>ISBN</th>
-                <th>Ação</th>
-            </tr>
-        </thead>
+        <?php include_once $_SERVER['DOCUMENT_ROOT'] ."/includes/alerta.php" ?>
 
-      <tbody>
-        <?php 
-            $livroController = new livroController();
-            $livro = $livroController->listaLivro();
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                   <th>#</th> 
+                   <th>capa</th> 
+                   <th>Titulo</th> 
+                   <th>Autor</th> 
+                
+                   <th style="width: 200px;">Ação</th> 
+                </tr>
+            </thead>
+            <tbody>
 
-            foreach($livro as $book):
-        ?>
+            <?php
 
-        <tr>
-            <td><?=$book->id_livro?></td>
-            <td><?=$book->titulo?></td>
-            <td><?=$book->autor?></td>
-            <td><?=$book->numero_pagina?></td>
-            <td><?=$book->preco?></td>
-            <td><?=$book->ano_public?></td>
-            <td><?=$book->isbn?></td>
-            
-            <td>
-                <a href="editar.php/id=<?$book->id_livro?>" class = "btn btn-primary">Editar</a>
-                <a href="#" class = "btn btn-danger">Excluir</a>
-            </td>
-        </tr>
-    
-        <?php
-            endforeach;
-        ?>
+                $livroController = new LivroController();
+                $livros = $livroController->listarLivros();
+                //var_dump($usuarios);
 
-      </tbody>
-      </table>
-</main>
+                foreach($livros as $livro):
+            ?>
+
+                <tr>
+                    <td><?=$livro->id_livro ?></td>
+                    <td><?=$livro->capa ?></td>
+                    <td><?=$livro->titulo ?></td>
+                    <td><?=$livro->autor ?></td>
+                    <td>
+                        <a href="editar.php?id_livro=<?=$livro->id_livro ?>" class="btn btn-primary">Editar</a>
+
+                        <a href="index.php?id_livro=<?=$livro->id_livro ?>&del" class="btn btn-danger">Excluir</a>
+                       
+                    </td>
+                </tr>
+
+                <?php 
+                    endforeach;
+                ?>
+
+            </tbody>
+        </table>
+
+
+    </main>
+
 
 <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] ."/includes/rodape.php";
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/rodape.php";  
 ?>
