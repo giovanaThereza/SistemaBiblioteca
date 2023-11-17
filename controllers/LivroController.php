@@ -35,7 +35,7 @@ class LivroController
                 $nomeArquivo = md5(uniqid()); 
 
                 //Diretorio do Destino 
-                $uploadDir = __dir__."/../uploads/";
+                $uploadDir = __DIR__."/../uploads/"; 
 
                 // Garante que a pasta existe
                 if(!is_dir($uploadDir)){
@@ -55,6 +55,7 @@ class LivroController
                 $dados['capa'] = $novoNomeArquivo;
 
             }
+
             $this->livroModel->cadastrar($dados);
             header('Location: index.php');
             exit;
@@ -65,6 +66,8 @@ class LivroController
     public function editarLivro()
     {
         $id_livro = $_GET['id_livro'];
+        $livro = $this->livroModel->buscar($id_livro);
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $dados = [
@@ -76,16 +79,52 @@ class LivroController
                 'isbn' => $_POST['isbn']
             ];
 
+            if(isset($_FILES['capa']['name']) && !empty($_FILES['capa']['name'])){
+                $fileInfo = pathinfo($_FILES['capa']['name']);
+
+                //Gera um novo nome aleatório
+                $nomeArquivo = md5(uniqid()); 
+
+                //Diretorio do Destino 
+                $uploadDir = __DIR__."/../uploads/"; 
+
+                // Garante que a pasta existe
+                if(!is_dir($uploadDir)){
+                    mkdir($uploadDir,0777, true);
+                }
+
+                //Renomeia o arquivo original para o nome aleatório 
+                $novoNomeArquivo = $nomeArquivo . "." . $fileInfo['extension']; 
+
+                //Configura a pasta de destino, onde o arquivo será salvo
+                $pastaDestino = $uploadDir . $novoNomeArquivo;
+
+                //Salva o arquivo na pasta
+                move_uploaded_file($_FILES['capa']['tmp_name'], $pastaDestino); 
+
+                //Grava o caminho do arquivo no banco de dados
+                $dados['capa'] = $novoNomeArquivo;
+
+            }else {
+                $dados['capa'] = $livro->capa;
+            }
+
             $this->livroModel->editar($id_livro, $dados);
             header('Location: index.php');
             exit;
         }
 
-        return $this->livroModel->buscar($id_livro);
+        return $livro;
     }
 
     public function excluirLivro()
     {
+        //Apagar o arquivo do servidor
+        $livro = $this->livroModel->buscar($_GET['id_livro']);
+        $imagemCapa = __DIR__."/../uploads/";
+        unset($imagemCapa);
+
+        //Deletar o resgistro do banco de dados
         $this->livroModel->excluir($_GET['id_livro']);
         header('Location: index.php');
         exit;
